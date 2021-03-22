@@ -83,7 +83,34 @@
 <body>
 
   <div id='map'></div>
+
   <script>
+    function showModal() {
+      var modal = document.getElementById("modal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("modalButton");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal 
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    }
 
     var transformRequest = (url, resourceType) => {
       var isMapboxRequest =
@@ -101,7 +128,7 @@
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/streets-v11', // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
-      center: [-122.411, 37.785], // starting position [lng, lat]
+      center: [-77.20, 13.38], // starting position [lng, lat]
       zoom: 10,// starting zoom
       transformRequest: transformRequest
     });
@@ -114,14 +141,14 @@
         success: function (csvData) { makeGeoJSON(csvData); }
       });
 
-     
+
 
       function makeGeoJSON(csvData) {
         csv2geojson.csv2geojson(csvData, {
           latfield: 'Latitude',
           lonfield: 'Longitude',
           delimiter: ','
-        },  function (err, data) {
+        }, function (err, data) {
           map.on('load', function () {
 
             //Add the the layer to the map
@@ -143,17 +170,21 @@
             // location of the feature, with description HTML from its properties.
             map.on('click', 'csvData', function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
-             
-              var modalButton = `<button onclick="showModal()">Show</button>`;
-             
-              function showModal(){
-              console.log("Show")
-              return 'Show'
-              }
+
+              var modalButton = `<button id="modalButton" onclick="showModal()">Show</button>`;
+
+              var modal = `<div id="modal" class="modal"> 
+<div class="modal-content">
+  <span class="close">&times;</span>
+  <p>Some text in the Modal..</p>
+</div>
+
+</div>`
+
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              var description = `<h3>` + e.features[0].properties.Plant_Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + `<h4>` + `<b>` + `City: ` + `</b>` + e.features[0].properties.Created_At + `</h4>` + modalButton;
+              var description = `<h3>` + e.features[0].properties.Plant_Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + `<h4>` + `<b>` + `City: ` + `</b>` + e.features[0].properties.Created_At + `</h4>`  + modalButton;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
@@ -168,13 +199,14 @@
                 .setLngLat(coordinates)
                 .setHTML(description)
                 .addTo(map);
+
             });
 
             // Change the cursor to a pointer when the mouse is over the places layer.
             map.on('mouseenter', 'csvData', function () {
               map.getCanvas().style.cursor = 'pointer';
             });
-            
+
             // Change it back to a pointer when it leaves.
             map.on('mouseleave', 'places', function () {
               map.getCanvas().style.cursor = '';
