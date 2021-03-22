@@ -84,17 +84,26 @@
 
   <div id='map'></div>
   
+  <div id="modal"></div>
   
   <script>
     
     var modalTemplate = (type, url) => {
-      var temp = `<modal>hey am a modal </modal>`;
+      var temp = `<div id="openModal" class="modalDialog">
+                    <div>
+                        <a href="#close" title="Close" class="close">X</a>
+                        <h2>Modal Box</h2>
+                        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+                        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+	                  </div>
+                  </div>`;
       return temp; 
     }
     
     function showModal(e){
       console.log("Show")
-      return 'Show'
+      var modal = document.getElementById('modal');
+      modal.innerHTML = modalTemplate('', '');
     }
     var transformRequest = (url, resourceType) => {
       var isMapboxRequest =
