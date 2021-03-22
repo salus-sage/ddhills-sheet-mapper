@@ -83,8 +83,19 @@
 <body>
 
   <div id='map'></div>
+  
+  
   <script>
-
+    
+    var modalTemplate = (type, url) => {
+      var temp = `<modal>hey am a modal </modal>`;
+      return temp; 
+    }
+    
+    function showModal(e){
+      console.log("Show")
+      return 'Show'
+    }
     var transformRequest = (url, resourceType) => {
       var isMapboxRequest =
         url.slice(8, 22) === "api.mapbox.com" ||
@@ -146,10 +157,7 @@
              
               var modalButton = `<button onclick="showModal()">Show</button>`;
              
-              function showModal(){
-              console.log("Show")
-              return 'Show'
-              }
+
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
