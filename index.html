@@ -23,6 +23,11 @@
       width: 100%;
     }
 
+    .photo {
+      width: 50%;
+      height: 50%;
+    }
+
     /* Popup styling */
 
     .mapboxgl-popup {
@@ -91,7 +96,7 @@
       };
     };
     //YOUR TURN: add your Mapbox token
-    
+
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFuaWthbnRhbnZhIiwiYSI6ImNrbWVtcXFxMzJ3bTgyeG42Z2d1czNxOHEifQ.gX9UfLWNQTo5yKM4sugHRw'; //Mapbox token 
     var map = new mapboxgl.Map({
       container: 'map', // container id
@@ -100,23 +105,23 @@
       zoom: 10,// starting zoom
       transformRequest: transformRequest
     });
-  $(document).ready(function () {
+    $(document).ready(function () {
       $.ajax({
         type: "GET",
         //YOUR TURN: Replace with csv export link
-        url: 'https://docs.google.com/spreadsheets/d/1DfFeBAC25kPqw7cfBA8mj7HSn846hjNDSozZ7FrbX74/gviz/tq?tqx=out:csv&sheet=Sheet1',
+        url: 'https://docs.google.com/spreadsheets/d/1d3ZUpxx-X_bKHqASVYLjSmS8wb5pPYM2TQW-3fgw4HU/gviz/tq?tqx=out:csv&sheet=Sheet1',
         dataType: "text",
         success: function (csvData) { makeGeoJSON(csvData); }
       });
 
-
+     
 
       function makeGeoJSON(csvData) {
         csv2geojson.csv2geojson(csvData, {
           latfield: 'Latitude',
           lonfield: 'Longitude',
           delimiter: ','
-        }, function (err, data) {
+        },  function (err, data) {
           map.on('load', function () {
 
             //Add the the layer to the map
@@ -128,7 +133,7 @@
                 'data': data
               },
               'paint': {
-                'circle-radius': 5,
+                'circle-radius': 6,
                 'circle-color': "purple"
               }
             });
@@ -138,11 +143,17 @@
             // location of the feature, with description HTML from its properties.
             map.on('click', 'csvData', function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
-
+             
+              var modalButton = `<button onclick="showModal()">Show</button>`;
+             
+              function showModal(){
+              console.log("Show")
+              return 'Show'
+              }
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              var description = `<h3>` + e.features[0].properties.Name  + `</h3>` + `<h4>` + `<b>` + `Address: ` + `</b>` + e.features[0].properties.Address + `</h4>` + `<h4>` + `<b>` + `City: ` + `</b>` + e.features[0].properties.City + `</h4>`;
+              var description = `<h3>` + e.features[0].properties.Plant_Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + `<h4>` + `<b>` + `City: ` + `</b>` + e.features[0].properties.Created_At + `</h4>` + `<h4>` + `<b>` + `Image: ` + `</b>` + `<img src="` + e.features[0].properties.Photo + `" class="img-fluid photo"/>` + `</h4>` + modalButton;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
@@ -163,7 +174,7 @@
             map.on('mouseenter', 'csvData', function () {
               map.getCanvas().style.cursor = 'pointer';
             });
-
+            
             // Change it back to a pointer when it leaves.
             map.on('mouseleave', 'places', function () {
               map.getCanvas().style.cursor = '';
@@ -175,11 +186,9 @@
           });
 
         });
+
       };
     });
-
-
-
 
   </script>
 
