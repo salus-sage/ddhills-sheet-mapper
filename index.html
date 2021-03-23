@@ -253,8 +253,8 @@
             map.on('click', 'csvData', function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
               currentEvent = e.features[0].properties;
-              var imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', e.features[0].properties.Photo)">Images </a>`;
-              var panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', e.features[0].properties.embed)">Panorama</a>`;
+              var imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
+              var panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
 
 
               //set popup text
