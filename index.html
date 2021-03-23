@@ -149,11 +149,31 @@
   <div id="openModal" class="modalDialog">
     <div>
       <a href="#close" title="Close" class="close">X</a>
-      <h2>Modal Box</h2>
+
+      <div class="img-box" id="imgBox">
+        <!-- <iframe src="https://momento360.com/e/u/24c5c1d0efe84aa9b99db45143a8cb18?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium" width="400px" height="350px" frameborder="0"></iframe> -->
+      </div>
     </div>
   </div>
   <script>
-   
+    function showModal(text) {
+      if (text === 'images') {
+        var iframBox = document.getElementById('imgBox');
+        iframBox.innerHTML='';
+        var img = document.createElement('img');
+        img.src = 'https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg';
+        document.getElementById('imgBox').appendChild(img);
+      }
+      else if (text === 'panarom') {
+        var iframBox = document.getElementById('imgBox');
+        iframBox.innerHTML='';
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://momento360.com/e/u/24c5c1d0efe84aa9b99db45143a8cb18?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium';
+        iframe.style.width = '400px';
+        iframe.style.height = '300px';
+        document.getElementById('imgBox').appendChild(iframe);       
+      }
+    }
 
 
 
@@ -219,13 +239,13 @@
             map.on('click', 'csvData', function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
 
-              var modalButton = `<a href="#openModal">Show Image</a>`;
-
+              var imageModalButton = `<a href="#openModal" id="imageModal" onclick="showModal('images')">Images </a>`;
+              var panoramaModalButton = `<a href="#openModal" id="panaromaModal" onclick="showModal('panarom')">Panorama</a>`;
 
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              var description = `<h3>` + e.features[0].properties.Plant_Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + `<h4>` + `<b>` + `City: ` + `</b>` + e.features[0].properties.Created_At + `</h4>` + modalButton;
+              var description = `<h3>` + e.features[0].properties.Plant_Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + `<h4>` + `<b>` + `City: ` + `</b>` + e.features[0].properties.Created_At + `</h4>` + imageModalButton + panoramaModalButton;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
@@ -242,6 +262,9 @@
                 .addTo(map);
 
             });
+            // map.off('click', 'images', function() {
+            //   console.log(e,'s')
+            // })
 
             // Change the cursor to a pointer when the mouse is over the places layer.
             map.on('mouseenter', 'csvData', function () {
