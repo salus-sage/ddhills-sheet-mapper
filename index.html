@@ -210,8 +210,8 @@
         const iframe = document.createElement('iframe');
         iframe.src = currentEvent.embed || src;
         iframe.style.width = '400px';
-        iframe.style.height = '300px';
-        iframe.allowFullscreen = true;
+        iframe.style.height = '300px';     
+        iframe.setAttribute('allowFullScreen', '');
         document.getElementById('imgBox').appendChild(iframe);       
       }
     }
