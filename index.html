@@ -97,7 +97,18 @@
       pointer-events: none;
     }
 
-
+    .modalButton{
+      background-color: black;
+      border: none;
+      color: white;
+      padding: 8px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
 
     .modalDialog:target {
       opacity: 1;
@@ -107,7 +118,7 @@
     .modalDialog>div {
       width: 400px;
       position: relative;
-      margin: 5% auto;
+      margin: 10% auto;
       padding: 5px 20px 13px 20px;
       border-radius: 10px;
       background: #fff;
@@ -242,8 +253,8 @@
             map.on('click', 'csvData', function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
               currentEvent = e.features[0].properties;
-              var imageModalButton = `<a href="#openModal" id="imageModal" onclick="showModal('images')">Images </a>`;
-              var panoramaModalButton = `<a href="#openModal" id="panaromaModal" onclick="showModal('panarom')">Panorama</a>`;
+              var imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images')">Images </a>`;
+              var panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom')">Panorama</a>`;
 
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
