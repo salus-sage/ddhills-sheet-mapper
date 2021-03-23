@@ -168,7 +168,7 @@
   </div>
   <script>
     var currentEvent;
-    function showModal(text) {
+    function showModal(text, src) {
       if (text === 'images') {
         console.log(currentEvent)
         var iframBox = document.getElementById('imgBox');
@@ -178,11 +178,11 @@
         img.src = currentEvent.Photo
         document.getElementById('imgBox').appendChild(img);
       }
-      else if (text === 'panarom') {
+      else if (text === 'panarom' && src) {
         var iframBox = document.getElementById('imgBox');
         iframBox.innerHTML='';
         const iframe = document.createElement('iframe');
-        iframe.src = 'https://momento360.com/e/u/24c5c1d0efe84aa9b99db45143a8cb18?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium';
+        iframe.src = currentEvent.embed || src;
         iframe.style.width = '400px';
         iframe.style.height = '300px';
         document.getElementById('imgBox').appendChild(iframe);       
@@ -253,8 +253,9 @@
             map.on('click', 'csvData', function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
               currentEvent = e.features[0].properties;
-              var imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images')">Images </a>`;
-              var panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom')">Panorama</a>`;
+              var imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', e.features[0].properties.Photo)">Images </a>`;
+              var panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', e.features[0].properties.embed)">Panorama</a>`;
+
 
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
