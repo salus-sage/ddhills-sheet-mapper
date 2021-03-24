@@ -5,11 +5,11 @@
   <meta charset='utf-8' />
   <title></title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-  <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
-  <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
-  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+  <script src="js/jquery.min.js"></script>
+  <script src='js/mapbox-gl.js'></script>
+  <link href='css/mapbox-gl.css' rel='stylesheet' />
+  <script src='js/csv2geojson.js'></script>
+  <script src='js/turf.min.js'></script>
   <style>
     body {
       margin: 0;
@@ -116,7 +116,8 @@
     }
 
     .modalDialog>div {
-      width: 75%;
+      width: 50rem;
+      height: 35rem;
       position: relative;
       margin: 2% auto;
       padding: 0px;
@@ -135,8 +136,8 @@
     }
 
     iframe {
-      width: 995px !important;
-      height: 500px !important;
+      width: 49rem !important;
+      height: 30rem !important;
     }
 
     @media only screen and (max-width: 768px) {
@@ -177,6 +178,228 @@
     .close:hover {
       background: #00d9ff;
     }
+
+
+    #proparallax {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      min-height: 30.5rem;
+      border: 2px solid black;
+      box-shadow: 0px 8px 10px 8px grey;
+    }
+
+    #proparallax img {
+      position: absolute;
+      width: 50rem;
+      height: 30.5rem;
+      overflow: hidden;
+      object-fit: cover;
+    }
+
+    @keyframes parallax_one {
+
+      /* controls img.one movement */
+      0% {
+        /* .imageloaded */
+        height: 37.5rem;
+        width: 50rem;
+        left: 0rem;
+        opacity: 1;
+      }
+
+      /* .imagehold runs from 0 to 27.77% */
+      27.77% {
+        /* .imageloaded */
+        width: 50rem;
+        left: 0rem;
+      }
+
+      27.78% {
+        /* .imagepreunload */
+        width: 50rem;
+        left: 0rem;
+        right: 50rem;
+      }
+
+      33.33% {
+        /* .imageunloaded */
+        height: 37.5rem;
+        width: 0rem;
+        left: 0rem;
+        right: 0rem;
+        opacity: 1;
+      }
+
+      33.34% {
+        /* imageoff */
+        opacity: 0;
+      }
+
+      94.43% {
+        /* .imageon */
+        left: 0rem;
+        opacity: 0;
+      }
+
+      94.44% {
+        /* .imageinitial */
+        height: 37.5rem;
+        width: 0rem;
+        left: 50rem;
+        opacity: 1;
+      }
+
+      100% {
+        /* .imageloaded */
+        width: 50rem;
+        left: 0rem;
+        opacity: 1;
+      }
+    }
+
+    @keyframes parallax_two {
+
+      /* controls img.two movement */
+      0% {
+        /* .imageoff */
+        opacity: 0;
+      }
+
+      27.77% {
+        /* .imageon */
+        left: 0rem;
+        opacity: 0;
+      }
+
+      27.78% {
+        /* .imageinitial */
+        width: 0rem;
+        height: 37.5rem;
+        left: 50rem;
+        opacity: 1;
+      }
+
+      33.33% {
+        /* .imageloaded */
+        width: 50rem;
+        left: 0rem;
+      }
+
+      /* .imagehold runs from 33.34% - 61.10% */
+      61.10% {
+        /* .imageloaded */
+        width: 50rem;
+        left: 0rem;
+      }
+
+      61.11% {
+        /* .imagepreunload */
+        width: 50rem;
+        left: 0rem;
+        right: 50rem;
+      }
+
+      66.67% {
+        /* .imageunloaded */
+        width: 0rem;
+        right: 0rem;
+        left: 0rem;
+        height: 37.5rem;
+        opacity: 1;
+      }
+
+      66.68% {
+        /* .imageoff */
+        opacity: 0;
+      }
+
+      100% {
+        /* .imageoff */
+        opacity: 0;
+      }
+    }
+
+    @keyframes parallax_three {
+
+      /* controls img.three movement */
+      0% {
+        /* .imageoff */
+        opacity: 0;
+      }
+
+      61.10% {
+        /* .imageon */
+        opacity: 0;
+      }
+
+      61.11% {
+        /* .imageinitial */
+        width: 0rem;
+        height: 37.5rem;
+        left: 50rem;
+        opacity: 1;
+      }
+
+      66.67% {
+        /* .imageloaded */
+        width: 50rem;
+        left: 0rem;
+      }
+
+      /* .imagehold runs from 66.67% - 94.43% */
+      94.43% {
+        /* .imageloaded */
+        width: 50rem;
+        left: 0rem;
+      }
+
+      94.44% {
+        /* .imagepreunload */
+        width: 50rem;
+        left: 0rem;
+        right: 50rem;
+      }
+
+      100% {
+        /* imageunloaded */
+        width: 0rem;
+        right: 0rem;
+        left: 0rem;
+        height: 37.5rem;
+        opacity: 1;
+      }
+    }
+
+    #proparallax img.one {
+      animation-name: parallax_one;
+      /* controls img.one movement */
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-duration: 18s;
+      animation-direction: forwards;
+      object-fit: cover;
+    }
+
+    #proparallax img.two {
+      animation-name: parallax_two;
+      /* controls img.two movement */
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-duration: 18s;
+      animation-direction: forwards;
+      object-fit: cover;
+    }
+
+    #proparallax img.three {
+      animation-name: parallax_three;
+      /* controls img.three movement */
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-duration: 18s;
+      animation-direction: forwards;
+      object-fit: cover;
+    }
   </style>
 </head>
 
@@ -187,7 +410,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <a href="#close" title="Close" class="close">X</a>
-        <h4 class="modal-title">Images</h4>
+        <h4 class="modal-title">Show</h4>
       </div>
       <div class="modal-body">
         <div class="img-box" id="imgBox">
@@ -198,14 +421,23 @@
   <script>
     var currentEvent;
 
-    function showModal(text, src) {
+    function showModal(text, src) {      
       if (text === 'images') {
+        var imgUrl = src.split(';');
         var iframBox = document.getElementById('imgBox');
         iframBox.innerHTML = '';
+        var parallaxContainer = document.createElement('div');
+        parallaxContainer.id = 'proparallax';
         var img = document.createElement('img');
+        imgUrl.map((event,id) => {
+          console.log(id, event)
         img.className = "photo";
-        img.src = currentEvent.Photo
-        document.getElementById('imgBox').appendChild(img);
+        img.id = id;
+        img.src = event;
+        })
+        document.getElementById('imgBox').appendChild(parallaxContainer);
+        document.getElementById('proparallax').appendChild(img);
+
       }
       else if (text === 'panarom' && src) {
         var iframBox = document.getElementById('imgBox');
@@ -214,6 +446,17 @@
         iframe.src = currentEvent.embed || src;
         iframe.setAttribute('allowFullScreen', '');
         document.getElementById('imgBox').appendChild(iframe);
+      }
+      else if (text === 'video' && src){
+        console.log(currentEvent)
+        var iframBox = document.getElementById('imgBox');
+        iframBox.innerHTML ='';
+        var video = document.createElement('video');
+        video.src = currentEvent.video || src;
+        video.setAttribute('width','750');
+        video.setAttribute('height','450');
+        video.controls = true;
+        document.getElementById('imgBox').appendChild(video);
       }
     }
     var transformRequest = (url, resourceType) => {
@@ -243,7 +486,7 @@
       $.ajax({
         type: "GET",
         //YOUR TURN: Replace with csv export link
-        url: 'https://docs.google.com/spreadsheets/d/1d3ZUpxx-X_bKHqASVYLjSmS8wb5pPYM2TQW-3fgw4HU/gviz/tq?tqx=out:csv&sheet=Sheet1',
+        url: 'ddhills_data.csv',
         dataType: "text",
         success: function (csvData) { makeGeoJSON(csvData); }
       });
@@ -278,28 +521,53 @@
               currentEvent = e.features[0].properties;
               var panoramaModalButton;
               var imageModalButton;
-              if (currentEvent.Photo === "" && currentEvent.embed === "") {
-                imageModalButton ="";
-                panoramaModalButton ="";
+              var videoModalButton;
+              if (currentEvent.Photo === "" && currentEvent.embed === "" && currentEvent.video === "") {
+                imageModalButton = "";
+                panoramaModalButton = "";
+                videoModalButton = "";
               }
-              else if (currentEvent.Photo === "") {
-                panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
-                imageModalButton="";
+              else if(currentEvent.Photo === "" && currentEvent.embed === "" &&  currentEvent.video !== ""){
+                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+                panoramaModalButton = "";
+                imageModalButton = "";
               }
-              else if (currentEvent.embed === "") {
+              else if (currentEvent.Photo !== "" && currentEvent.embed !== "" &&  currentEvent.video === "") {
+                videoModalButton = "";
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
-                panoramaModalButton="";
+                panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
+              }
+              else if (currentEvent.embed === "" && currentEvent.Photo !== "" && currentEvent.video !== "") {
+                imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
+                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+                panoramaModalButton = "";
+              }
+              else if(currentEvent.embed !== "" && currentEvent.Photo === "" && currentEvent.video !== ""){
+                panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
+                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+                imageModalButton = "";
+              }
+              else if(currentEvent.video !== "" && currentEvent.embed !== "" && currentEvent.Photo === ""){
+                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;;
+                imageModalButton = '';
+                panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
+              }
+              else if(currentEvent.Photo !== "" && currentEvent.embed === "" && currentEvent.video === ""){
+                panoramaModalButton = "";
+                imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;;
+                videoModalButton = "";
               }
               else {
+                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
               }
-
+              
 
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              var description = `<h3>` + e.features[0].properties.Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + imageModalButton + panoramaModalButton;
+              var description = `<h3>` + e.features[0].properties.Name + `</h3>` + `<h4>` + `<b>` + `Notes: ` + `</b>` + e.features[0].properties.Notes + `</h4>` + imageModalButton + panoramaModalButton + videoModalButton;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
