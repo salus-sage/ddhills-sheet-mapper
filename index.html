@@ -24,8 +24,10 @@
     }
 
     .photo {
-      width: 100%;
-      height: 50%;
+      width: 50%;
+      height: 95%;
+      display: flex;
+      overflow-x: scroll;
     }
 
     /* Popup styling */
@@ -116,8 +118,8 @@
     }
 
     .modalDialog>div {
-      width: 50rem;
-      height: 35rem;
+      width: 60%;
+      height: 79%;
       position: relative;
       margin: 2% auto;
       padding: 0px;
@@ -127,7 +129,9 @@
       background: -webkit-linear-gradient(#fff, #999);
       background: -o-linear-gradient(#fff, #999);
     }
-
+    .modal-body{
+      height: 113em;
+    }
     @media only screen and (max-width: 768px) {
       .modalDialog>div {
         width: 300px;
@@ -178,227 +182,10 @@
     .close:hover {
       background: #00d9ff;
     }
-
-
-    #proparallax {
-      display: block;
-      position: relative;
-      overflow: hidden;
-      min-height: 30.5rem;
-      border: 2px solid black;
-      box-shadow: 0px 8px 10px 8px grey;
-    }
-
-    #proparallax img {
-      position: absolute;
-      width: 50rem;
-      height: 30.5rem;
-      overflow: hidden;
-      object-fit: cover;
-    }
-
-    @keyframes parallax_one {
-
-      /* controls img.one movement */
-      0% {
-        /* .imageloaded */
-        height: 37.5rem;
-        width: 50rem;
-        left: 0rem;
-        opacity: 1;
-      }
-
-      /* .imagehold runs from 0 to 27.77% */
-      27.77% {
-        /* .imageloaded */
-        width: 50rem;
-        left: 0rem;
-      }
-
-      27.78% {
-        /* .imagepreunload */
-        width: 50rem;
-        left: 0rem;
-        right: 50rem;
-      }
-
-      33.33% {
-        /* .imageunloaded */
-        height: 37.5rem;
-        width: 0rem;
-        left: 0rem;
-        right: 0rem;
-        opacity: 1;
-      }
-
-      33.34% {
-        /* imageoff */
-        opacity: 0;
-      }
-
-      94.43% {
-        /* .imageon */
-        left: 0rem;
-        opacity: 0;
-      }
-
-      94.44% {
-        /* .imageinitial */
-        height: 37.5rem;
-        width: 0rem;
-        left: 50rem;
-        opacity: 1;
-      }
-
-      100% {
-        /* .imageloaded */
-        width: 50rem;
-        left: 0rem;
-        opacity: 1;
-      }
-    }
-
-    @keyframes parallax_two {
-
-      /* controls img.two movement */
-      0% {
-        /* .imageoff */
-        opacity: 0;
-      }
-
-      27.77% {
-        /* .imageon */
-        left: 0rem;
-        opacity: 0;
-      }
-
-      27.78% {
-        /* .imageinitial */
-        width: 0rem;
-        height: 37.5rem;
-        left: 50rem;
-        opacity: 1;
-      }
-
-      33.33% {
-        /* .imageloaded */
-        width: 50rem;
-        left: 0rem;
-      }
-
-      /* .imagehold runs from 33.34% - 61.10% */
-      61.10% {
-        /* .imageloaded */
-        width: 50rem;
-        left: 0rem;
-      }
-
-      61.11% {
-        /* .imagepreunload */
-        width: 50rem;
-        left: 0rem;
-        right: 50rem;
-      }
-
-      66.67% {
-        /* .imageunloaded */
-        width: 0rem;
-        right: 0rem;
-        left: 0rem;
-        height: 37.5rem;
-        opacity: 1;
-      }
-
-      66.68% {
-        /* .imageoff */
-        opacity: 0;
-      }
-
-      100% {
-        /* .imageoff */
-        opacity: 0;
-      }
-    }
-
-    @keyframes parallax_three {
-
-      /* controls img.three movement */
-      0% {
-        /* .imageoff */
-        opacity: 0;
-      }
-
-      61.10% {
-        /* .imageon */
-        opacity: 0;
-      }
-
-      61.11% {
-        /* .imageinitial */
-        width: 0rem;
-        height: 37.5rem;
-        left: 50rem;
-        opacity: 1;
-      }
-
-      66.67% {
-        /* .imageloaded */
-        width: 50rem;
-        left: 0rem;
-      }
-
-      /* .imagehold runs from 66.67% - 94.43% */
-      94.43% {
-        /* .imageloaded */
-        width: 50rem;
-        left: 0rem;
-      }
-
-      94.44% {
-        /* .imagepreunload */
-        width: 50rem;
-        left: 0rem;
-        right: 50rem;
-      }
-
-      100% {
-        /* imageunloaded */
-        width: 0rem;
-        right: 0rem;
-        left: 0rem;
-        height: 37.5rem;
-        opacity: 1;
-      }
-    }
-
-    #proparallax img.one {
-      animation-name: parallax_one;
-      /* controls img.one movement */
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-duration: 18s;
-      animation-direction: forwards;
-      object-fit: cover;
-    }
-
-    #proparallax img.two {
-      animation-name: parallax_two;
-      /* controls img.two movement */
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-duration: 18s;
-      animation-direction: forwards;
-      object-fit: cover;
-    }
-
-    #proparallax img.three {
-      animation-name: parallax_three;
-      /* controls img.three movement */
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-duration: 18s;
-      animation-direction: forwards;
-      object-fit: cover;
+ 
+    .img-box {
+      display: flex;
+      overflow-x: scroll;
     }
   </style>
 </head>
@@ -413,31 +200,25 @@
         <h4 class="modal-title">Show</h4>
       </div>
       <div class="modal-body">
-        <div class="img-box" id="imgBox">
-        </div>
+        <div class="img-box" id="imgBox"></div>
       </div>
     </div>
   </div>
+
   <script>
     var currentEvent;
-
-    function showModal(text, src) {      
+    function showModal(text, src) {
       if (text === 'images') {
         var imgUrl = src.split(';');
+        var imgElement = "";
         var iframBox = document.getElementById('imgBox');
         iframBox.innerHTML = '';
-        var parallaxContainer = document.createElement('div');
-        parallaxContainer.id = 'proparallax';
-        var img = document.createElement('img');
-        imgUrl.map((event,id) => {
-          console.log(id, event)
-        img.className = "photo";
-        img.id = id;
-        img.src = event;
+        imgUrl.forEach((element, id) => {
+          imgElement = document.createElement('img');
+          imgElement.className = "photo";
+          imgElement.src = element
+          iframBox.appendChild(imgElement);
         })
-        document.getElementById('imgBox').appendChild(parallaxContainer);
-        document.getElementById('proparallax').appendChild(img);
-
       }
       else if (text === 'panarom' && src) {
         var iframBox = document.getElementById('imgBox');
@@ -447,14 +228,14 @@
         iframe.setAttribute('allowFullScreen', '');
         document.getElementById('imgBox').appendChild(iframe);
       }
-      else if (text === 'video' && src){
+      else if (text === 'video' && src) {
         console.log(currentEvent)
         var iframBox = document.getElementById('imgBox');
-        iframBox.innerHTML ='';
+        iframBox.innerHTML = '';
         var video = document.createElement('video');
         video.src = currentEvent.video || src;
-        video.setAttribute('width','750');
-        video.setAttribute('height','450');
+        video.setAttribute('width', '750');
+        video.setAttribute('height', '450');
         video.controls = true;
         document.getElementById('imgBox').appendChild(video);
       }
@@ -527,42 +308,42 @@
                 panoramaModalButton = "";
                 videoModalButton = "";
               }
-              else if(currentEvent.Photo === "" && currentEvent.embed === "" &&  currentEvent.video !== ""){
-                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+              else if (currentEvent.Photo === "" && currentEvent.embed === "" && currentEvent.video !== "") {
+                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 panoramaModalButton = "";
                 imageModalButton = "";
               }
-              else if (currentEvent.Photo !== "" && currentEvent.embed !== "" &&  currentEvent.video === "") {
+              else if (currentEvent.Photo !== "" && currentEvent.embed !== "" && currentEvent.video === "") {
                 videoModalButton = "";
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
               }
               else if (currentEvent.embed === "" && currentEvent.Photo !== "" && currentEvent.video !== "") {
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
-                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 panoramaModalButton = "";
               }
-              else if(currentEvent.embed !== "" && currentEvent.Photo === "" && currentEvent.video !== ""){
+              else if (currentEvent.embed !== "" && currentEvent.Photo === "" && currentEvent.video !== "") {
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
                 videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 imageModalButton = "";
               }
-              else if(currentEvent.video !== "" && currentEvent.embed !== "" && currentEvent.Photo === ""){
+              else if (currentEvent.video !== "" && currentEvent.embed !== "" && currentEvent.Photo === "") {
                 videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;;
                 imageModalButton = '';
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
               }
-              else if(currentEvent.Photo !== "" && currentEvent.embed === "" && currentEvent.video === ""){
+              else if (currentEvent.Photo !== "" && currentEvent.embed === "" && currentEvent.video === "") {
                 panoramaModalButton = "";
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;;
                 videoModalButton = "";
               }
               else {
-                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
               }
-              
+
 
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
