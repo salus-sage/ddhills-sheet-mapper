@@ -181,9 +181,9 @@
 
 
     #proparallax {
-      display: block;
       position: relative;
-      overflow: hidden;
+      display: flex;
+      overflow-x: scroll;
       min-height: 30.5rem;
       border: 2px solid black;
       box-shadow: 0px 8px 10px 8px grey;
@@ -193,7 +193,8 @@
       position: absolute;
       width: 50rem;
       height: 30.5rem;
-      overflow: hidden;
+      display: flex;
+      overflow-x: scroll;
       object-fit: cover;
     }
 
@@ -413,31 +414,28 @@
         <h4 class="modal-title">Show</h4>
       </div>
       <div class="modal-body">
-        <div class="img-box" id="imgBox">
-        </div>
+        <div class="img-box" id="imgBox"></div>
       </div>
     </div>
   </div>
+
   <script>
     var currentEvent;
-
-    function showModal(text, src) {      
+    function showModal(text, src) {
       if (text === 'images') {
         var imgUrl = src.split(';');
+        var imgElement = "";
         var iframBox = document.getElementById('imgBox');
         iframBox.innerHTML = '';
         var parallaxContainer = document.createElement('div');
         parallaxContainer.id = 'proparallax';
-        var img = document.createElement('img');
-        imgUrl.map((event,id) => {
-          console.log(id, event)
-        img.className = "photo";
-        img.id = id;
-        img.src = event;
+        imgUrl.forEach((element, id) => {
+          imgElement = document.createElement('img');
+          imgElement.className = "photo";
+          imgElement.src = element
         })
         document.getElementById('imgBox').appendChild(parallaxContainer);
-        document.getElementById('proparallax').appendChild(img);
-
+        document.getElementById('proparallax').appendChild(imgElement);
       }
       else if (text === 'panarom' && src) {
         var iframBox = document.getElementById('imgBox');
@@ -447,14 +445,14 @@
         iframe.setAttribute('allowFullScreen', '');
         document.getElementById('imgBox').appendChild(iframe);
       }
-      else if (text === 'video' && src){
+      else if (text === 'video' && src) {
         console.log(currentEvent)
         var iframBox = document.getElementById('imgBox');
-        iframBox.innerHTML ='';
+        iframBox.innerHTML = '';
         var video = document.createElement('video');
         video.src = currentEvent.video || src;
-        video.setAttribute('width','750');
-        video.setAttribute('height','450');
+        video.setAttribute('width', '750');
+        video.setAttribute('height', '450');
         video.controls = true;
         document.getElementById('imgBox').appendChild(video);
       }
@@ -509,10 +507,10 @@
               },
               'paint': {
                 'circle-radius': {
-                  'base': 6,
+                  'base': 5,
                   'stops': [
-                  [14, 2],
-                  [22, 180]
+                    [14, 2],
+                    [22, 180]
                   ]
                 },
                 'circle-color': [
@@ -547,42 +545,42 @@
                 panoramaModalButton = "";
                 videoModalButton = "";
               }
-              else if(currentEvent.Photo === "" && currentEvent.embed === "" &&  currentEvent.video !== ""){
-                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+              else if (currentEvent.Photo === "" && currentEvent.embed === "" && currentEvent.video !== "") {
+                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 panoramaModalButton = "";
                 imageModalButton = "";
               }
-              else if (currentEvent.Photo !== "" && currentEvent.embed !== "" &&  currentEvent.video === "") {
+              else if (currentEvent.Photo !== "" && currentEvent.embed !== "" && currentEvent.video === "") {
                 videoModalButton = "";
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
               }
               else if (currentEvent.embed === "" && currentEvent.Photo !== "" && currentEvent.video !== "") {
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
-                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 panoramaModalButton = "";
               }
-              else if(currentEvent.embed !== "" && currentEvent.Photo === "" && currentEvent.video !== ""){
+              else if (currentEvent.embed !== "" && currentEvent.Photo === "" && currentEvent.video !== "") {
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
                 videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 imageModalButton = "";
               }
-              else if(currentEvent.video !== "" && currentEvent.embed !== "" && currentEvent.Photo === ""){
+              else if (currentEvent.video !== "" && currentEvent.embed !== "" && currentEvent.Photo === "") {
                 videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;;
                 imageModalButton = '';
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
               }
-              else if(currentEvent.Photo !== "" && currentEvent.embed === "" && currentEvent.video === ""){
+              else if (currentEvent.Photo !== "" && currentEvent.embed === "" && currentEvent.video === "") {
                 panoramaModalButton = "";
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;;
                 videoModalButton = "";
               }
               else {
-                videoModalButton =  `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
+                videoModalButton = `<a href="#openModal" id="videoModal" class="modalButton" onclick="showModal('video', currentEvent.video)">Video</a>`;
                 imageModalButton = `<a href="#openModal" id="imageModal" class="modalButton" onclick="showModal('images', currentEvent.Photo)">Images </a>`;
                 panoramaModalButton = `<a href="#openModal" id="panaromaModal" class="modalButton" onclick="showModal('panarom', currentEvent.embed)">Panorama</a>`;
               }
-              
+
 
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
