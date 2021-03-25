@@ -29,7 +29,10 @@
       display: flex;
       overflow-x: scroll;
     }
-
+    .photoRefernce{
+      display: flex;
+      overflow-x: scroll;
+    }
     /* Popup styling */
 
     .mapboxgl-popup {
@@ -211,14 +214,16 @@
         var imgElement = "";
         var iframBox = document.getElementById('imgBox');
         iframBox.innerHTML = '';
-        // var fullImage = document.createElement('a');
-        // fullImage.setAttribute("target","_blank")
         imgUrl.forEach((element, id) => {
+        var fullImage = document.createElement('a');
+        fullImage.setAttribute("target","_blank")
+        fullImage.href = element;
+        fullImage.className = 'photoRefernce'
           imgElement = document.createElement('img');
           imgElement.className = "photo";
           imgElement.src = element;
-          iframBox.appendChild(imgElement);
-          // fullImage.appendChild(imgElement);
+          fullImage.append(imgElement);
+          iframBox.append(fullImage);
         })
       }
       else if (text === 'panarom' && src) {
