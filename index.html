@@ -137,8 +137,10 @@
     }
 
     iframe {
-      width: 49rem !important;
+      width: 100% !important;
       height: 30rem !important;
+      margin-right: auto;
+      margin-left: auto;
     }
 
     @media only screen and (max-width: 768px) {
@@ -184,6 +186,10 @@
       display: flex;
       overflow: auto;
       flex-wrap: nowrap;
+    }
+    .vid {
+      margin-right: auto;
+      margin-left: auto;
     }
   </style>
 </head>
@@ -244,6 +250,7 @@
         video.src = currentEvent.video || src;
         video.setAttribute('width', '750');
         video.setAttribute('height', '450');
+        video.setAttribute('class', 'vid');
         video.controls = true;
         document.getElementById('imgBox').appendChild(video);
       }
