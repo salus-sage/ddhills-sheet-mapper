@@ -24,14 +24,12 @@
     }
 
     .photo {
-      min-width: 100px;
-      min-height: 400px;
-      display: flex;
-      overflow-x: scroll;
+      width: auto;
+      height: 420px;
+      padding: 5px;
     }
     .photoRefernce{
-      display: flex;
-      overflow-x: scroll;
+      flex: 0 0 auto;
     }
     /* Popup styling */
 
@@ -185,8 +183,7 @@
     .img-box {
       display: flex;
       overflow: auto;
-      justify-content: center;
-      align-items: center;
+      flex-wrap: nowrap;
     }
   </style>
 </head>
