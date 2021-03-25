@@ -25,7 +25,7 @@
 
     .photo {
       width: 50%;
-      height: 95%;
+      height: 100%;
       display: flex;
       overflow-x: scroll;
     }
@@ -256,7 +256,31 @@
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFuaWthbnRhbnZhIiwiYSI6ImNrbWVtcXFxMzJ3bTgyeG42Z2d1czNxOHEifQ.gX9UfLWNQTo5yKM4sugHRw'; //Mapbox token 
     var map = new mapboxgl.Map({
       container: 'map', // container id
-      style: 'mapbox://styles/mapbox/streets-v11', // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+      style: {
+        "version": 8,
+        "sources": {
+            "simple-tiles": {
+                "type": "raster",
+                // point to our third-party tiles. Note that some examples
+                // show a "url" property. This only applies to tilesets with
+                // corresponding TileJSON (such as mapbox tiles). 
+                "tiles": [
+                    "http://localhost:8000/dd-jatre/tiles/{z}/{x}/{y}.jpeg",
+                    "http://localhost:8000/dd-jatre/tiles/{z}/{x}/{y}.jpeg",
+                
+                ],
+                "tileSize": 256
+            }
+        },
+        "layers": [{
+            "id": "simple-tiles",
+            "type": "raster",
+            "source": "simple-tiles",
+            "minzoom": 14,
+            "maxzoom": 18
+        }]
+      },
+      // style: 'mapbox://styles/mapbox/streets-v11', // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
       center: [77.20621211, 13.37901111], // starting position [lng, lat]
       zoom: 14,// starting zoom
       transformRequest: transformRequest
