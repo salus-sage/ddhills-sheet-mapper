@@ -195,7 +195,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <a href="#close" title="Close" class="close">X</a>
-        <h4 class="modal-title">Show</h4>
+        <h4 class="modal-title" id="modalTitle"></h4>
       </div>
       <div class="modal-body">
         <div class="img-box" id="imgBox"></div>
@@ -206,7 +206,9 @@
   <script>
     var currentEvent;
     function showModal(text, src) {
+      var modalHeaderText = document.getElementById('modalTitle')
       if (text === 'images') {
+        modalHeaderText.innerText = 'Images';
         var imgUrl = src.split(';');
         var imgElement = "";
         var iframBox = document.getElementById('imgBox');
@@ -224,6 +226,7 @@
         })
       }
       else if (text === 'panarom' && src) {
+        modalHeaderText.innerText = 'Panoramas Image';
         var iframBox = document.getElementById('imgBox');
         iframBox.innerHTML = '';
         const iframe = document.createElement('iframe');
@@ -232,7 +235,7 @@
         document.getElementById('imgBox').appendChild(iframe);
       }
       else if (text === 'video' && src) {
-        console.log(currentEvent)
+        modalHeaderText.innerText = 'Video';
         var iframBox = document.getElementById('imgBox');
         iframBox.innerHTML = '';
         var video = document.createElement('video');
